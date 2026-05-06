@@ -19,7 +19,7 @@ export default function Home() {
           items={[
             "Independent practice",
             "Brand · Product · Editorial",
-            "Paris &amp; everywhere",
+            "Paris & everywhere",
             "Est. MMXXIV",
           ]}
           italic

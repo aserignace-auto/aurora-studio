@@ -26,6 +26,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://aurora-studio-xi.vercel.app"),
   title: "Aurora Studio — Independent Creative Direction",
   description:
     "Aurora is an independent design studio crafting brand worlds, digital products, and editorial systems for ambitious teams.",
@@ -33,6 +34,14 @@ export const metadata: Metadata = {
     title: "Aurora Studio",
     description: "Independent creative direction. Brand, product, editorial.",
     type: "website",
+  },
+  icons: {
+    icon: [
+      {
+        url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='8' fill='%23d8ff3a'/></svg>",
+        type: "image/svg+xml",
+      },
+    ],
   },
 };
 
