@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const links = [
-  { label: "Work", href: "#work" },
-  { label: "Studio", href: "#studio" },
-  { label: "Services", href: "#services" },
-  { label: "Hello", href: "#contact" },
+  { label: "Sound", href: "#sound" },
+  { label: "Color", href: "#color" },
+  { label: "Specs", href: "#specs" },
+  { label: "Reviews", href: "#reviews" },
 ];
 
 export default function Nav() {
@@ -28,33 +28,22 @@ export default function Nav() {
       className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 sm:px-8 sm:pt-6"
     >
       <div
-        className={`flex items-center justify-between rounded-full border-[2.5px] border-ink px-3 py-2 transition-all duration-300 sm:px-5 sm:py-2.5 ${
-          scrolled ? "bg-cream shadow-[3px_4px_0_var(--color-ink)]" : "bg-cream/90"
+        className={`flex items-center justify-between rounded-full border px-4 py-2.5 transition-all duration-500 sm:px-6 ${
+          scrolled
+            ? "border-bone/10 bg-ink/70 backdrop-blur-2xl"
+            : "border-bone/5 bg-transparent"
         }`}
       >
         <a href="#top" className="group flex items-center gap-2.5">
           <span className="block h-7 w-7 sm:h-8 sm:w-8">
             <svg viewBox="0 0 32 32" className="h-full w-full">
-              <g className="spin-slow" style={{ transformOrigin: "16px 16px" }}>
-                {Array.from({ length: 12 }).map((_, i) => (
-                  <line
-                    key={i}
-                    x1="16"
-                    y1="2"
-                    x2="16"
-                    y2="6"
-                    stroke="var(--color-ink)"
-                    strokeWidth={1.6}
-                    strokeLinecap="round"
-                    transform={`rotate(${i * 30} 16 16)`}
-                  />
-                ))}
-              </g>
-              <circle cx="16" cy="16" r="8" fill="var(--color-sun)" stroke="var(--color-ink)" strokeWidth={1.6} />
+              <circle cx="16" cy="16" r="14" fill="none" stroke="var(--color-electric)" strokeWidth={1.6} />
+              <circle cx="16" cy="16" r="6" fill="none" stroke="var(--color-electric)" strokeWidth={1.6} />
+              <circle cx="16" cy="16" r="2.5" fill="var(--color-electric)" />
             </svg>
           </span>
-          <span className="font-display text-2xl font-medium leading-none tracking-tight text-ink">
-            Marigold
+          <span className="font-anton text-2xl uppercase leading-none tracking-tight text-bone">
+            Aurion
           </span>
         </a>
 
@@ -63,20 +52,22 @@ export default function Nav() {
             <a
               key={l.label}
               href={l.href}
-              className="group relative text-[15px] font-medium text-ink transition-colors hover:text-coral"
+              data-cursor="goto"
+              className="group relative font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim transition-colors hover:text-bone"
             >
               {l.label}
-              <span className="absolute -bottom-0.5 left-0 h-0.5 w-0 rounded-full bg-coral transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 h-px w-0 bg-electric transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </nav>
 
         <a
-          href="#contact"
-          className="group inline-flex items-center gap-2 rounded-full border-[2.5px] border-ink bg-coral px-4 py-1.5 text-[13px] font-bold text-cream shadow-[3px_3px_0_var(--color-ink)] transition-all hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0_var(--color-ink)] sm:text-sm"
+          href="#preorder"
+          data-cursor="reserve"
+          className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-electric bg-electric px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-all hover:bg-electric-glow"
         >
-          <span className="block h-1.5 w-1.5 rounded-full bg-cream" />
-          Hire us
+          <span className="block h-1.5 w-1.5 rounded-full bg-white" />
+          Pre-order
         </a>
       </div>
     </motion.header>

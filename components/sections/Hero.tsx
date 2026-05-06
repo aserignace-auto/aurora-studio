@@ -1,211 +1,202 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import Sun from "@/components/illustrations/Sun";
-import Cloud from "@/components/illustrations/Cloud";
-import Sparkle from "@/components/illustrations/Sparkle";
-import Vinyl from "@/components/illustrations/Vinyl";
-import Monstera from "@/components/illustrations/Monstera";
-import Plane from "@/components/illustrations/Plane";
-import Squiggle from "@/components/illustrations/Squiggle";
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
+import Headphones, { COLORS } from "@/components/Headphones";
+import Magnetic from "@/components/Magnetic";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const productRef = useRef<HTMLDivElement>(null);
+
+  // Cursor parallax for headphones
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const rotateY = useSpring(useTransform(mx, [-1, 1], [-22, 22]), {
+    stiffness: 80,
+    damping: 18,
+  });
+  const rotateX = useSpring(useTransform(my, [-1, 1], [12, -12]), {
+    stiffness: 80,
+    damping: 18,
+  });
+
+  // Scroll-driven hero
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const planeX = useTransform(scrollYProgress, [0, 1], [0, 220]);
-  const planeY = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const monsteraY = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const vinylRotate = useTransform(scrollYProgress, [0, 1], [0, -160]);
-  const sparkleScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const productY = useTransform(scrollYProgress, [0, 1], [0, 220]);
+  const productScale = useTransform(scrollYProgress, [0, 1], [1, 0.78]);
+  const productOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.2]);
+  const watermarkY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const watermarkOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.1]);
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      const el = productRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      mx.set((e.clientX - cx) / (w * 0.5));
+      my.set((e.clientY - cy) / (h * 0.5));
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [mx, my]);
 
   return (
     <section
       id="top"
       ref={ref}
-      className="relative isolate overflow-hidden px-5 pb-16 pt-28 sm:px-10 sm:pb-28 sm:pt-36"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden px-4 pb-16 pt-24 sm:px-10 sm:pt-32"
     >
-      {/* Subtle layered backdrop blobs */}
+      {/* Star field */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -left-32 top-32 h-[480px] w-[480px] rounded-full bg-peach/35 blur-3xl" />
-        <div className="absolute right-[-200px] top-1/3 h-[520px] w-[520px] rounded-full bg-rose/30 blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 h-[420px] w-[420px] rounded-full bg-sun/30 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,rgba(45,107,255,0.18),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_80%,rgba(107,63,245,0.12),transparent_55%)]" />
+        {Array.from({ length: 60 }).map((_, i) => (
+          <span
+            key={i}
+            className="star absolute block h-[2px] w-[2px] rounded-full bg-bone"
+            style={{
+              top: `${(i * 73) % 100}%`,
+              left: `${(i * 37) % 100}%`,
+              opacity: 0.3 + ((i % 5) * 0.12),
+              animationDelay: `${(i % 7) * -0.5}s`,
+            }}
+          />
+        ))}
       </div>
 
-      <div className="relative mx-auto max-w-[1480px]">
-        {/* Floating decorations - sophisticated */}
-        <div className="pointer-events-none absolute inset-0">
-          {/* Vinyl record - top left */}
-          <motion.div
-            initial={{ opacity: 0, x: -40, scale: 0.7 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1, delay: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
-            style={{ rotate: vinylRotate }}
-            className="absolute left-[2%] top-[14%] hidden lg:block"
-          >
-            <div className="drift-y">
-              <Vinyl size={180} label="var(--color-coral)" accent="var(--color-sun)" />
-            </div>
-          </motion.div>
-
-          {/* Cloud */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.6 }}
-            className="absolute right-[8%] top-4 sm:top-8"
-          >
-            <div className="drift-x">
-              <Cloud size={130} fill="var(--color-cream)" />
-            </div>
-          </motion.div>
-
-          {/* Monstera leaf - right */}
-          <motion.div
-            initial={{ opacity: 0, x: 40, rotate: 30 }}
-            animate={{ opacity: 1, x: 0, rotate: 22 }}
-            transition={{ duration: 1, delay: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
-            style={{ y: monsteraY }}
-            className="absolute right-[4%] top-[36%] hidden lg:block"
-          >
-            <div className="slow-tilt">
-              <Monstera size={200} fill="var(--color-sage)" />
-            </div>
-          </motion.div>
-
-          {/* Paper plane parallax */}
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 1.0 }}
-            style={{ x: planeX, y: planeY }}
-            className="absolute left-[28%] top-[42%] hidden md:block"
-          >
-            <Plane size={120} fill="var(--color-cream)" trail="var(--color-coral)" />
-          </motion.div>
-
-          {/* Sparkles */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 1.0 }}
-            style={{ scale: sparkleScale }}
-            className="absolute left-[6%] top-[58%] hidden sm:block"
-          >
-            <div className="twinkle">
-              <Sparkle size={36} fill="var(--color-coral)" />
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 1.2 }}
-            className="absolute right-[12%] bottom-[14%] hidden sm:block"
-          >
-            <div className="twinkle" style={{ animationDelay: "-2s" }}>
-              <Sparkle size={28} fill="var(--color-cobalt)" />
-            </div>
-          </motion.div>
+      {/* Top status row */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.5 }}
+        className="relative z-10 mx-auto flex w-full max-w-[1480px] items-center justify-between font-mono text-[10px] uppercase tracking-[0.22em] text-bone-faint"
+      >
+        <div className="flex items-center gap-3">
+          <span className="block h-1.5 w-1.5 rounded-full bg-sage" />
+          <span className="text-bone-dim">Drop scheduled</span>
+          <span>·</span>
+          <span>15.07.2026</span>
         </div>
+        <div className="hidden items-center gap-3 sm:flex">
+          <span>N°001</span>
+          <span>·</span>
+          <span>Limited release</span>
+        </div>
+      </motion.div>
 
-        {/* Pill */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
+      {/* Watermark */}
+      <motion.h1
+        style={{ y: watermarkY, opacity: watermarkOpacity }}
+        className="pointer-events-none relative z-0 mt-8 select-none text-center font-anton text-[clamp(140px,28vw,460px)] uppercase leading-[0.82] tracking-[-0.04em]"
+        aria-label="Aurion One"
+      >
+        <motion.span
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="relative z-10 mx-auto inline-flex w-fit items-center gap-2 rounded-full border-[2px] border-ink bg-cream px-3.5 py-1.5 text-[12px] font-semibold uppercase tracking-wider text-ink shadow-[2px_2px_0_var(--color-ink)] sm:text-[13px]"
+          transition={{ duration: 1.2, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
+          className="block bg-gradient-to-b from-bone via-bone-dim to-transparent bg-clip-text text-transparent"
         >
-          <span className="block h-2 w-2 rounded-full bg-sage breathe" />
-          Independent design studio · Paris
+          AURION
+        </motion.span>
+      </motion.h1>
+
+      {/* Product */}
+      <motion.div
+        ref={productRef}
+        style={{ y: productY, scale: productScale, opacity: productOpacity }}
+        className="pointer-events-none absolute left-1/2 top-[42%] z-10 -translate-x-1/2 -translate-y-1/2"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 60 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1.4, delay: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
+          className="relative"
+        >
+          {/* Glow under product */}
+          <div className="absolute left-1/2 top-1/2 -z-10 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/30 blur-[100px] sm:h-[560px] sm:w-[560px]" />
+          <Headphones
+            size={420}
+            color={COLORS.obsidian}
+            rotateY={rotateY}
+            rotateX={rotateX}
+            className="sm:!w-[480px] sm:!h-[480px] md:!w-[560px] md:!h-[560px]"
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Bottom content */}
+      <div className="relative z-10 mt-auto flex flex-col gap-10 pt-[44vh] sm:pt-[36vh]">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="mx-auto w-full max-w-[1480px] grid grid-cols-1 gap-8 sm:grid-cols-12"
+        >
+          <div className="sm:col-span-4">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-bone-faint">
+              [The next generation]
+            </p>
+            <h2 className="mt-3 font-display text-[clamp(28px,3vw,40px)] font-medium leading-tight tracking-tight text-bone">
+              Spatial audio,
+              <br />
+              <span className="italic text-electric-glow">re-engineered</span>.
+            </h2>
+          </div>
+
+          <p className="text-base leading-relaxed text-bone-dim sm:col-span-4 sm:col-start-6 sm:text-lg">
+            AI-powered noise cancellation, hi-res lossless playback, and a
+            50-hour battery in a 268-gram cabinet. Designed for those who hear
+            the difference.
+          </p>
+
+          <div className="flex flex-col items-start gap-3 sm:col-span-3 sm:col-start-10 sm:items-end">
+            <Magnetic strength={0.4}>
+              <a
+                href="#preorder"
+                data-cursor="reserve"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-bone px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.2em] text-void transition-colors hover:bg-electric hover:text-white"
+              >
+                Reserve · €399
+                <svg width="16" height="16" viewBox="0 0 16 16" className="transition-transform group-hover:translate-x-1">
+                  <path d="M3 8 H 13 M9 4 L 13 8 L 9 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </Magnetic>
+            <a href="#sound" data-cursor="watch" className="font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim transition-colors hover:text-bone">
+              Watch demo →
+            </a>
+          </div>
         </motion.div>
 
-        {/* Hero headline + sun */}
-        <div className="relative z-10 mt-8 flex flex-col items-center text-center sm:mt-10">
-          <h1 className="font-display text-[clamp(56px,11.5vw,180px)] font-medium leading-[0.92] tracking-[-0.025em] text-ink">
-            <motion.span
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
-              className="block"
-            >
-              We design{" "}
-              <span className="hand-underline italic text-coral">joyful</span>
-            </motion.span>
-
-            <motion.span
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-              className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-x-6"
-            >
-              <span>brand</span>
-              <span className="inline-block">
-                <Sun size={130} color="var(--color-sun)" rays={16} />
-              </span>
-              <span className="italic" style={{ color: "var(--color-cobalt)" }}>worlds.</span>
-            </motion.span>
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.9 }}
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft sm:text-xl"
-          >
-            Marigold is a small, sunny studio of designers and illustrators
-            building brands, products, and editorial systems for teams who like
-            their work to <span className="font-hand text-2xl font-bold text-coral sm:text-3xl">stand out</span>.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.1 }}
-            className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:gap-5"
-          >
-            <a
-              href="#work"
-              className="group inline-flex items-center gap-2.5 rounded-full border-[2.5px] border-ink bg-coral px-7 py-3.5 text-base font-bold text-cream shadow-[5px_5px_0_var(--color-ink)] transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[7px_7px_0_var(--color-ink)]"
-            >
-              See our work
-              <svg width="18" height="18" viewBox="0 0 18 18" className="transition-transform group-hover:translate-x-1">
-                <path d="M3 9 H 14 M9 4 L 14 9 L 9 14" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-
-            <a
-              href="#services"
-              className="group inline-flex items-center gap-2.5 rounded-full border-[2.5px] border-ink bg-cream px-7 py-3.5 text-base font-bold text-ink shadow-[5px_5px_0_var(--color-ink)] transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[7px_7px_0_var(--color-ink)]"
-            >
-              <span className="grid h-5 w-5 place-items-center rounded-full bg-coral text-[12px] font-bold text-cream">+</span>
-              What we do
-            </a>
-          </motion.div>
-        </div>
-
-        {/* Bottom line */}
+        {/* Indicator dots */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 1.3 }}
-          className="relative z-10 mt-16 flex flex-col items-center gap-5 sm:mt-24 sm:flex-row sm:items-end sm:justify-between"
+          transition={{ duration: 0.6, delay: 1.6 }}
+          className="mx-auto flex items-end gap-1"
         >
-          <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-full border-[2px] border-ink bg-rose">
-              <Sparkle size={20} fill="var(--color-sun)" stroke="var(--color-ink)" />
-            </div>
-            <div className="font-hand text-xl text-ink-soft sm:text-2xl">
-              Trusted by 28+ ambitious teams
-            </div>
-          </div>
-          <Squiggle width={200} height={20} stroke="var(--color-cobalt)" />
-          <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-soft">
-            Est. 2024 · Paris &amp; everywhere
-          </div>
+          {Array.from({ length: 28 }).map((_, i) => (
+            <motion.span
+              key={i}
+              animate={{ scaleY: [0.4, 1, 0.4] }}
+              transition={{
+                duration: 2.4 + (i % 5) * 0.3,
+                ease: "easeInOut",
+                repeat: Infinity,
+                delay: i * 0.05,
+              }}
+              className="block w-px origin-bottom bg-bone/30"
+              style={{ height: 18 + (i % 6) * 4 }}
+            />
+          ))}
         </motion.div>
       </div>
     </section>

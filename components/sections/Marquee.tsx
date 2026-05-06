@@ -1,53 +1,25 @@
 "use client";
 
-import Sparkle from "@/components/illustrations/Sparkle";
-import Squiggle from "@/components/illustrations/Squiggle";
+const items = [
+  "Spatial Audio",
+  "AI Noise Cancel",
+  "50-hour battery",
+  "Hi-Res Lossless",
+  "Bluetooth 5.4",
+  "268 grams",
+  "Aluminum cabinet",
+  "Drop · 15.07.2026",
+];
 
-type DecoKey = "sparkle" | "dot" | "squiggle";
-
-function Deco({ kind, color }: { kind: DecoKey; color: string }) {
-  if (kind === "sparkle") return <Sparkle size={28} fill={color} />;
-  if (kind === "squiggle") return <Squiggle width={60} height={14} stroke={color} strokeWidth={3} />;
-  return (
-    <span
-      className="block h-3 w-3 rounded-full"
-      style={{ background: color, border: "2px solid var(--color-ink)" }}
-    />
-  );
-}
-
-export default function Marquee({
-  items,
-  bg = "var(--color-coral)",
-  text = "var(--color-cream)",
-  speed = "normal",
-  decoKind = "sparkle",
-  decoColor = "var(--color-sun)",
-}: {
-  items: string[];
-  bg?: string;
-  text?: string;
-  speed?: "normal" | "fast";
-  decoKind?: DecoKey;
-  decoColor?: string;
-}) {
+export default function Marquee() {
   const doubled = [...items, ...items, ...items];
-
   return (
-    <div
-      className="relative overflow-hidden border-y-[2.5px] border-ink py-3"
-      style={{ background: bg, color: text }}
-    >
-      <div className={`marquee-track ${speed === "fast" ? "marquee-fast" : ""} flex whitespace-nowrap`}>
+    <div className="relative overflow-hidden border-y border-bone/10 bg-ink py-5">
+      <div className="marquee-track flex whitespace-nowrap">
         {doubled.map((it, i) => (
-          <span
-            key={i}
-            className="flex items-center gap-7 px-6 font-display text-[clamp(34px,5.6vw,76px)] font-medium tracking-tight"
-          >
+          <span key={i} className="flex items-center gap-8 px-6 font-mono text-sm uppercase tracking-[0.22em] text-bone-dim sm:text-[15px]">
+            <span className="block h-[3px] w-[3px] rotate-45 bg-electric" />
             {it}
-            <span className="inline-flex items-center">
-              <Deco kind={decoKind} color={decoColor} />
-            </span>
           </span>
         ))}
       </div>
