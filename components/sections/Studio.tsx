@@ -41,7 +41,7 @@ export default function Studio() {
           >
             <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
               <img
-                src="https://images.unsplash.com/photo-1517242810446-cc8951b2be40?auto=format&fit=crop&w=1400&q=80"
+                src="https://picsum.photos/seed/obscura-helena-portrait/1400/1750?grayscale"
                 alt="Cinematic portrait"
                 className="cinema h-full w-full object-cover"
               />

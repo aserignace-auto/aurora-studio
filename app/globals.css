@@ -114,9 +114,21 @@ html.lenis, html.lenis body { height: auto; }
   font-feature-settings: "lnum", "tnum";
 }
 
-/* Image filter - cinema look (slight desaturation + warm shadow) */
+/* Image filter - cinema look (B&W with brand red tint via duotone) */
 .cinema {
-  filter: contrast(1.05) saturate(0.92) brightness(0.94);
+  filter: contrast(1.18) brightness(0.86) sepia(0.12) saturate(0.85);
+}
+
+.cinema-tint {
+  position: relative;
+}
+.cinema-tint::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(214, 59, 31, 0.1), rgba(13, 13, 10, 0.3));
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }
 
 /* Film border (1.85:1 etc) */

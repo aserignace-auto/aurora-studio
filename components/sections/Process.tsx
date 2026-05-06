@@ -8,25 +8,25 @@ const steps = [
     n: "01",
     t: "Listen",
     d: "We start with a conversation, no deck, no jargon. We learn the brief and the world it lives in.",
-    image: "https://images.unsplash.com/photo-1492366254240-43affaefc3e3?auto=format&fit=crop&w=1400&q=80",
+    image: "https://picsum.photos/seed/obscura-process-listen/1400/1750?grayscale",
   },
   {
     n: "02",
     t: "Frame",
     d: "We translate the brief into a creative thesis, the angle that makes every later choice easier.",
-    image: "https://images.unsplash.com/photo-1502691876148-a84978e59af8?auto=format&fit=crop&w=1400&q=80",
+    image: "https://picsum.photos/seed/obscura-process-frame/1400/1750?grayscale",
   },
   {
     n: "03",
     t: "Capture",
     d: "Set, light, direction. We shoot lean and slow. Every frame is a choice we can defend.",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1400&q=80",
+    image: "https://picsum.photos/seed/obscura-process-capture/1400/1750?grayscale",
   },
   {
     n: "04",
     t: "Master",
     d: "Edit, grade, finishing. We hand off masters and assets. The film leaves the room better than it arrived.",
-    image: "https://images.unsplash.com/photo-1463100099107-aa0980c362e6?auto=format&fit=crop&w=1400&q=80",
+    image: "https://picsum.photos/seed/obscura-process-master/1400/1750?grayscale",
   },
 ];
 

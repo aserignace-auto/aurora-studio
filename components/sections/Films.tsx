@@ -23,7 +23,7 @@ const films: Film[] = [
     category: "Fashion film",
     format: "16mm",
     duration: "02:14",
-    image: "https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=1400&q=80",
+    image: "https://picsum.photos/seed/obscura-helena-film/1400/900?grayscale",
   },
   {
     index: "02",
@@ -33,7 +33,7 @@ const films: Film[] = [
     category: "Brand film",
     format: "65mm",
     duration: "01:48",
-    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1400&q=80",
+    image: "https://picsum.photos/seed/obscura-atlas-film/1400/900?grayscale",
   },
   {
     index: "03",
@@ -43,7 +43,7 @@ const films: Film[] = [
     category: "Editorial",
     format: "Photography",
     duration: "12 stills",
-    image: "https://images.unsplash.com/photo-1517242810446-cc8951b2be40?auto=format&fit=crop&w=1400&q=80",
+    image: "https://picsum.photos/seed/obscura-bloom-film/1400/900?grayscale",
   },
   {
     index: "04",
@@ -53,7 +53,7 @@ const films: Film[] = [
     category: "Documentary",
     format: "Digital",
     duration: "08:32",
-    image: "https://images.unsplash.com/photo-1502691876148-a84978e59af8?auto=format&fit=crop&w=1400&q=80",
+    image: "https://picsum.photos/seed/obscura-north-film/1400/900?grayscale",
   },
   {
     index: "05",
@@ -63,7 +63,7 @@ const films: Film[] = [
     category: "Music video",
     format: "16mm",
     duration: "03:12",
-    image: "https://images.unsplash.com/photo-1492366254240-43affaefc3e3?auto=format&fit=crop&w=1400&q=80",
+    image: "https://picsum.photos/seed/obscura-spectre-film/1400/900?grayscale",
   },
   {
     index: "06",
@@ -73,7 +73,7 @@ const films: Film[] = [
     category: "Brand world",
     format: "Mixed",
     duration: "Series",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1400&q=80",
+    image: "https://picsum.photos/seed/obscura-aether-film/1400/900?grayscale",
   },
 ];
 

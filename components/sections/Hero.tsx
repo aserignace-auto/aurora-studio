@@ -28,8 +28,8 @@ export default function Hero() {
       >
         <picture>
           <img
-            src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=2400&q=80"
-            alt="Paris cinematic night architecture"
+            src="https://picsum.photos/seed/obscura-hero-paris-night/2400/1600?grayscale"
+            alt="Cinematic still"
             className="cinema h-full w-full object-cover"
           />
         </picture>
