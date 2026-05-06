@@ -31,7 +31,7 @@ const capabilities = [
 
 export default function Capabilities() {
   return (
-    <section id="index" className="relative px-6 py-24 sm:px-10 sm:py-32">
+    <section id="index" className="relative px-6 py-28 sm:px-10 sm:py-40">
       <div className="mx-auto max-w-[1480px]">
         <div className="mb-14 grid grid-cols-1 gap-6 border-b border-bone/10 pb-8 sm:grid-cols-12">
           <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-bone-faint sm:col-span-3">

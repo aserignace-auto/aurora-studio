@@ -10,14 +10,14 @@ export default function Loader() {
   useEffect(() => {
     let value = 0;
     const interval = setInterval(() => {
-      value += Math.floor(Math.random() * 7) + 3;
+      value += Math.floor(Math.random() * 11) + 7;
       if (value >= 100) {
         value = 100;
         clearInterval(interval);
-        setTimeout(() => setDone(true), 380);
+        setTimeout(() => setDone(true), 280);
       }
       setCount(value);
-    }, 70);
+    }, 55);
     return () => clearInterval(interval);
   }, []);
 

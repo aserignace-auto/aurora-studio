@@ -102,13 +102,13 @@ export default function Work() {
               <a
                 href="#"
                 data-cursor-grow
-                className="group grid grid-cols-12 items-center gap-4 py-7 transition-colors sm:py-9"
+                className="group grid grid-cols-12 items-center gap-4 py-8 transition-colors sm:py-9"
               >
                 <span className="col-span-2 font-mono text-xs text-bone-faint sm:col-span-1">
                   {p.index}
                 </span>
                 <div className="col-span-10 flex flex-col gap-1.5 sm:col-span-5">
-                  <span className="font-serif text-2xl tracking-tight text-bone transition-all duration-500 sm:text-4xl group-hover:translate-x-2 group-hover:italic group-hover:text-lime">
+                  <span className="font-serif text-3xl tracking-tight text-bone transition-all duration-500 sm:text-4xl group-hover:translate-x-2 group-hover:italic group-hover:text-lime">
                     {p.title}
                   </span>
                   <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-bone-dim">
@@ -117,18 +117,18 @@ export default function Work() {
                 </div>
 
                 {/* Swatch preview */}
-                <div className="col-span-12 sm:col-span-3">
+                <div className="col-span-7 sm:col-span-3">
                   <div
-                    className={`relative ml-auto h-12 w-full overflow-hidden rounded-full bg-gradient-to-r ${p.swatch} transition-all duration-500 group-hover:h-14 sm:max-w-[260px]`}
+                    className={`relative ml-auto h-10 w-full overflow-hidden rounded-full bg-gradient-to-r ${p.swatch} transition-all duration-500 group-hover:h-14 sm:h-12 sm:max-w-[260px]`}
                   >
                     <div className="absolute inset-0 mix-blend-overlay opacity-30 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.4),transparent_60%)]" />
                   </div>
                 </div>
 
-                <span className="col-span-6 font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim sm:col-span-2">
+                <span className="col-span-3 font-mono text-[10px] uppercase tracking-[0.2em] text-bone-dim sm:col-span-2 sm:text-[11px]">
                   {p.category}
                 </span>
-                <span className="col-span-6 text-right font-mono text-[11px] uppercase tracking-[0.2em] text-bone-faint sm:col-span-1">
+                <span className="col-span-2 text-right font-mono text-[10px] uppercase tracking-[0.2em] text-bone-faint sm:col-span-1 sm:text-[11px]">
                   {p.year}
                 </span>
               </a>
