@@ -1,45 +1,62 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import Sun from "@/components/illustrations/Sun";
 import Cloud from "@/components/illustrations/Cloud";
-import Sparkle from "@/components/illustrations/Sparkle";
-import Heart from "@/components/illustrations/Heart";
-import Flower from "@/components/illustrations/Flower";
+import Plane from "@/components/illustrations/Plane";
+import Vinyl from "@/components/illustrations/Vinyl";
+import Monstera from "@/components/illustrations/Monstera";
 
 export default function Contact() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end end"],
+  });
+  const planeX = useTransform(scrollYProgress, [0, 1], [-100, 200]);
+  const planeY = useTransform(scrollYProgress, [0, 1], [40, -80]);
+
   return (
     <section
       id="contact"
+      ref={ref}
       className="relative overflow-hidden bg-coral px-5 pt-24 sm:px-10 sm:pt-36"
     >
       {/* Floating decorations */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[6%] top-12 wobble-slow">
+        <div className="absolute left-[6%] top-12 drift-x">
           <Cloud size={140} fill="var(--color-cream)" />
         </div>
-        <div className="absolute right-[8%] top-20 wobble">
+        <div className="absolute right-[8%] top-20 drift-x-2">
           <Cloud size={110} fill="var(--color-cream)" />
         </div>
-        <div className="absolute left-[12%] bottom-24 twinkle">
-          <Sparkle size={48} fill="var(--color-sun)" />
+        <div className="absolute right-[6%] top-1/2">
+          <div className="drift-y-2">
+            <Vinyl size={120} body="var(--color-ink)" label="var(--color-cream)" accent="var(--color-sun)" />
+          </div>
         </div>
-        <div className="absolute right-[14%] top-1/2 twinkle" style={{ animationDelay: "-1s" }}>
-          <Sparkle size={60} fill="var(--color-cream)" />
+        <div className="absolute left-[8%] bottom-[28%] hidden md:block">
+          <div className="slow-tilt">
+            <Monstera size={130} fill="var(--color-cream)" />
+          </div>
         </div>
+        <motion.div style={{ x: planeX, y: planeY }} className="absolute left-[20%] top-1/3 hidden md:block">
+          <Plane size={100} fill="var(--color-cream)" trail="var(--color-sun)" />
+        </motion.div>
       </div>
 
       <div className="relative mx-auto max-w-[1480px]">
         <div className="text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            initial={{ opacity: 0, scale: 0.6 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.9, ease: [0.34, 1.56, 0.64, 1] }}
+            transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
             className="mx-auto mb-8 flex justify-center"
           >
-            <div className="float-bob">
-              <Sun size={170} color="var(--color-sun)" cheek="var(--color-rose)" />
+            <div className="drift-y">
+              <Sun size={150} color="var(--color-sun)" rays={18} />
             </div>
           </motion.div>
 
@@ -77,7 +94,9 @@ export default function Contact() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-10 inline-flex items-center gap-3 rounded-full border-[2.5px] border-ink bg-cream px-7 py-4 font-display text-2xl font-medium text-ink shadow-[6px_8px_0_var(--color-ink)] transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[8px_10px_0_var(--color-ink)] sm:text-3xl"
           >
-            <Heart size={28} fill="var(--color-coral)" />
+            <span className="grid h-7 w-7 place-items-center rounded-full bg-coral text-cream">
+              ✱
+            </span>
             hello@marigold.studio
           </motion.a>
         </div>
@@ -94,7 +113,7 @@ export default function Contact() {
               75003 Paris, FR
             </p>
             <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-cream/10 px-3 py-1 text-sm text-cream">
-              <span className="block h-2 w-2 rounded-full bg-sun pulse-scale" />
+              <span className="block h-2 w-2 rounded-full bg-sun breathe" />
               Open for Q3 2026 projects
             </div>
           </div>
@@ -130,9 +149,11 @@ export default function Contact() {
               Find us
             </div>
             <div className="mt-3 inline-flex items-center gap-2">
-              <Flower size={36} petal="var(--color-sun)" center="var(--color-cream)" />
+              <span className="grid h-9 w-9 place-items-center rounded-full border-[2px] border-cream bg-sun">
+                <Sun size={28} color="var(--color-coral)" rays={12} />
+              </span>
               <span className="font-hand text-2xl font-bold text-cream">
-                Made with love
+                Made with care
               </span>
             </div>
           </div>
@@ -141,7 +162,7 @@ export default function Contact() {
         <div className="flex flex-col items-start justify-between gap-3 border-t-[2.5px] border-ink/30 py-8 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-cream/60 sm:flex-row sm:items-center">
           <span>© Marigold Studio 2026</span>
           <span>Independent · Paris &amp; everywhere</span>
-          <span>Built with sunshine ☀</span>
+          <span>Built with sunshine</span>
         </div>
       </div>
     </section>

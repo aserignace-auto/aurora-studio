@@ -1,11 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Eye from "@/components/illustrations/Eye";
-import Mountain from "@/components/illustrations/Mountain";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import Vase from "@/components/illustrations/Vase";
+import Plane from "@/components/illustrations/Plane";
+import Compass from "@/components/illustrations/Compass";
 import Cloud from "@/components/illustrations/Cloud";
-import Sun from "@/components/illustrations/Sun";
 import Squiggle from "@/components/illustrations/Squiggle";
+import Figure from "@/components/illustrations/Figure";
 
 const stats = [
   { v: "28+", k: "happy clients", color: "var(--color-coral)" },
@@ -15,17 +17,25 @@ const stats = [
 ];
 
 export default function Studio() {
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sceneRef,
+    offset: ["start end", "end start"],
+  });
+  const planeY = useTransform(scrollYProgress, [0, 1], [60, -160]);
+  const planeRotate = useTransform(scrollYProgress, [0, 1], [-12, 8]);
+
   return (
     <section id="studio" className="relative overflow-hidden bg-cream-deep px-5 py-24 sm:px-10 sm:py-32">
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 flex h-32 items-center justify-around opacity-40">
-        <div className="wobble-slow">
-          <Cloud size={140} fill="white" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 flex h-32 items-center justify-around opacity-50">
+        <div className="drift-x">
+          <Cloud size={140} fill="var(--color-cream)" />
         </div>
-        <div className="wobble">
-          <Cloud size={110} fill="white" />
+        <div className="drift-x-2">
+          <Cloud size={110} fill="var(--color-cream)" />
         </div>
-        <div className="wobble-slow" style={{ animationDelay: "-2s" }}>
-          <Cloud size={130} fill="white" />
+        <div className="drift-x">
+          <Cloud size={130} fill="var(--color-cream)" />
         </div>
       </div>
 
@@ -50,9 +60,9 @@ export default function Studio() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="mt-5 font-display text-[clamp(40px,6vw,82px)] font-medium leading-[0.98] tracking-tight"
             >
-              A small studio with{" "}
-              <span className="hand-underline-cobalt italic">big eyes</span>{" "}
-              for the world.
+              A small studio with a{" "}
+              <span className="hand-underline-cobalt italic">long view</span>{" "}
+              of the world.
             </motion.h2>
 
             <motion.div
@@ -95,41 +105,46 @@ export default function Studio() {
           </div>
 
           <div className="relative sm:col-span-7 sm:pl-10">
-            {/* Illustrated scene */}
             <motion.div
+              ref={sceneRef}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative rounded-[36px] border-[2.5px] border-ink bg-cobalt p-6 shadow-[6px_8px_0_var(--color-ink)] sm:p-8"
+              className="relative rounded-[36px] border-[2.5px] border-ink bg-cobalt p-6 shadow-[6px_8px_0_var(--color-ink)] sm:p-10"
             >
+              {/* Compass top-left */}
               <div className="absolute -left-6 -top-6 sticker">
-                <div className="float-bob">
-                  <Sun size={90} />
-                </div>
-              </div>
-              <div className="absolute -right-4 -top-3 sticker">
-                <div className="wobble">
-                  <Cloud size={100} fill="white" />
+                <div className="drift-y">
+                  <Compass size={100} body="var(--color-sun)" needle="var(--color-coral)" />
                 </div>
               </div>
 
-              <div className="flex items-center justify-center pt-6 sm:pt-8">
-                <Mountain size={360} fill="var(--color-sage)" />
-              </div>
+              {/* Plane parallax flying through */}
+              <motion.div
+                style={{ y: planeY, rotate: planeRotate }}
+                className="absolute right-[12%] top-[18%]"
+              >
+                <Plane size={110} fill="var(--color-cream)" trail="var(--color-sun)" />
+              </motion.div>
 
-              <div className="mt-6 flex items-center justify-around">
-                <div className="float-bob-3">
-                  <Eye size={88} iris="var(--color-sun)" />
+              {/* Main scene: Figure (zen) + Vase */}
+              <div className="grid grid-cols-2 items-end gap-6 pt-8">
+                <div className="flex justify-center">
+                  <div className="drift-y-2">
+                    <Figure size={200} body="var(--color-sun)" head="var(--color-peach)" pose="stretch" />
+                  </div>
                 </div>
-                <div className="float-bob">
-                  <Eye size={88} iris="var(--color-coral)" />
+                <div className="flex justify-center">
+                  <div className="slow-tilt">
+                    <Vase size={170} body="var(--color-coral)" flower="var(--color-sun)" />
+                  </div>
                 </div>
               </div>
 
               <div className="absolute -bottom-5 right-6 sticker">
-                <div className="font-hand inline-block rotate-[-6deg] rounded-2xl border-[2px] border-ink bg-rose px-3 py-1 text-lg font-bold text-ink">
-                  hello, world!
+                <div className="font-hand inline-block rotate-[-4deg] rounded-2xl border-[2px] border-ink bg-rose px-3 py-1 text-lg font-bold text-ink">
+                  In studio, today
                 </div>
               </div>
             </motion.div>

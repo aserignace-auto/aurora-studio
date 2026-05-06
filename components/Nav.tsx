@@ -35,10 +35,22 @@ export default function Nav() {
         <a href="#top" className="group flex items-center gap-2.5">
           <span className="block h-7 w-7 sm:h-8 sm:w-8">
             <svg viewBox="0 0 32 32" className="h-full w-full">
-              <circle cx="16" cy="16" r="9" fill="var(--color-sun)" stroke="var(--color-ink)" strokeWidth={2} />
-              <circle cx="13" cy="14.5" r="1.4" fill="var(--color-ink)" />
-              <circle cx="19" cy="14.5" r="1.4" fill="var(--color-ink)" />
-              <path d="M12 18.5 Q 16 22 20 18.5" fill="none" stroke="var(--color-ink)" strokeWidth={1.6} strokeLinecap="round" />
+              <g className="spin-slow" style={{ transformOrigin: "16px 16px" }}>
+                {Array.from({ length: 12 }).map((_, i) => (
+                  <line
+                    key={i}
+                    x1="16"
+                    y1="2"
+                    x2="16"
+                    y2="6"
+                    stroke="var(--color-ink)"
+                    strokeWidth={1.6}
+                    strokeLinecap="round"
+                    transform={`rotate(${i * 30} 16 16)`}
+                  />
+                ))}
+              </g>
+              <circle cx="16" cy="16" r="8" fill="var(--color-sun)" stroke="var(--color-ink)" strokeWidth={1.6} />
             </svg>
           </span>
           <span className="font-display text-2xl font-medium leading-none tracking-tight text-ink">

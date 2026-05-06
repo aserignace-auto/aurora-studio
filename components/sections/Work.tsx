@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Sun from "@/components/illustrations/Sun";
-import Heart from "@/components/illustrations/Heart";
-import Flower from "@/components/illustrations/Flower";
-import Lightning from "@/components/illustrations/Lightning";
-import Cloud from "@/components/illustrations/Cloud";
-import Sparkle from "@/components/illustrations/Sparkle";
+import Vase from "@/components/illustrations/Vase";
+import Vinyl from "@/components/illustrations/Vinyl";
+import Plane from "@/components/illustrations/Plane";
+import Cup from "@/components/illustrations/Cup";
+import Compass from "@/components/illustrations/Compass";
+import Monstera from "@/components/illustrations/Monstera";
 
 type Project = {
   index: string;
@@ -29,10 +29,10 @@ const projects: Project[] = [
     year: "2026",
     bg: "var(--color-rose)",
     text: "var(--color-ink)",
-    tagline: "skincare that smiles back",
+    tagline: "skincare with a still-life",
     Illu: () => (
-      <div className="float-bob">
-        <Flower size={150} petal="var(--color-coral)" center="var(--color-sun)" />
+      <div className="drift-y">
+        <Vase size={150} body="var(--color-coral)" flower="var(--color-sun)" />
       </div>
     ),
   },
@@ -44,10 +44,10 @@ const projects: Project[] = [
     year: "2025",
     bg: "var(--color-cobalt)",
     text: "var(--color-cream)",
-    tagline: "fintech with feelings",
+    tagline: "fintech that travels",
     Illu: () => (
-      <div className="wobble">
-        <Lightning size={140} fill="var(--color-sun)" />
+      <div className="drift-y-2 slow-tilt">
+        <Plane size={150} fill="var(--color-cream)" trail="var(--color-sun)" />
       </div>
     ),
   },
@@ -61,8 +61,8 @@ const projects: Project[] = [
     text: "var(--color-ink)",
     tagline: "slow mornings, drawn in",
     Illu: () => (
-      <div className="float-bob-2">
-        <Sun size={150} color="var(--color-coral)" cheek="var(--color-rose)" />
+      <div className="drift-y">
+        <Cup size={130} body="var(--color-cream)" liquid="var(--color-coral)" />
       </div>
     ),
   },
@@ -76,8 +76,8 @@ const projects: Project[] = [
     text: "var(--color-cream)",
     tagline: "quiet outdoor goods",
     Illu: () => (
-      <div className="wobble-slow">
-        <Cloud size={150} fill="var(--color-cream)" />
+      <div className="slow-tilt">
+        <Monstera size={150} fill="var(--color-cream)" />
       </div>
     ),
   },
@@ -91,24 +91,20 @@ const projects: Project[] = [
     text: "var(--color-cream)",
     tagline: "records you keep forever",
     Illu: () => (
-      <div className="float-bob-3">
-        <Sparkle size={130} fill="var(--color-sun)" />
-      </div>
+      <Vinyl size={150} body="var(--color-ink)" label="var(--color-coral)" accent="var(--color-sun)" />
     ),
   },
   {
     index: "06",
-    title: "Petit Atelier",
-    client: "Petit Atelier",
-    category: "Childrens books",
+    title: "Atlas & Co.",
+    client: "Atlas",
+    category: "Travel branding",
     year: "2024",
     bg: "var(--color-coral)",
     text: "var(--color-cream)",
-    tagline: "bedtime stories, on paper",
+    tagline: "brands for the long road",
     Illu: () => (
-      <div className="wobble">
-        <Heart size={140} fill="var(--color-cream)" />
-      </div>
+      <Compass size={150} body="var(--color-cream)" needle="var(--color-cobalt)" />
     ),
   },
 ];
@@ -142,7 +138,7 @@ export default function Work() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: i * 0.05, ease: [0.2, 0.8, 0.2, 1] }}
-              className="group relative flex flex-col overflow-hidden rounded-[32px] border-[2.5px] border-ink shadow-[5px_6px_0_var(--color-ink)] transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:rotate-[-0.6deg] hover:shadow-[7px_9px_0_var(--color-ink)]"
+              className="group relative flex flex-col overflow-hidden rounded-[32px] border-[2.5px] border-ink shadow-[5px_6px_0_var(--color-ink)] transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[7px_9px_0_var(--color-ink)]"
               style={{ background: p.bg, color: p.text }}
             >
               <div className="relative flex h-[260px] items-center justify-center px-6 pt-6 sm:h-[280px]">

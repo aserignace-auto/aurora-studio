@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Sun from "@/components/illustrations/Sun";
-import Sparkle from "@/components/illustrations/Sparkle";
-import Lightning from "@/components/illustrations/Lightning";
-import Heart from "@/components/illustrations/Heart";
+import Vase from "@/components/illustrations/Vase";
+import Plane from "@/components/illustrations/Plane";
+import Vinyl from "@/components/illustrations/Vinyl";
+import Compass from "@/components/illustrations/Compass";
 
 const services = [
   {
@@ -14,8 +14,8 @@ const services = [
     text: "var(--color-cream)",
     tags: ["Identity", "Naming", "Type", "Print"],
     Illu: () => (
-      <div className="float-bob">
-        <Sun size={130} color="var(--color-sun)" cheek="var(--color-rose)" />
+      <div className="drift-y">
+        <Vase size={130} body="var(--color-sun)" flower="var(--color-cream)" />
       </div>
     ),
   },
@@ -26,8 +26,8 @@ const services = [
     text: "var(--color-cream)",
     tags: ["Web", "App", "System", "Motion"],
     Illu: () => (
-      <div className="wobble">
-        <Lightning size={120} fill="var(--color-sun)" />
+      <div className="drift-y-2">
+        <Plane size={130} fill="var(--color-cream)" trail="var(--color-sun)" />
       </div>
     ),
   },
@@ -38,9 +38,7 @@ const services = [
     text: "var(--color-cream)",
     tags: ["Mascots", "Editorial", "Print", "Motion"],
     Illu: () => (
-      <div className="float-bob-2">
-        <Heart size={110} fill="var(--color-rose)" />
-      </div>
+      <Vinyl size={130} body="var(--color-ink)" label="var(--color-coral)" accent="var(--color-sun)" />
     ),
   },
   {
@@ -50,9 +48,7 @@ const services = [
     text: "var(--color-cream)",
     tags: ["CD", "Sparring", "Hiring", "Workshops"],
     Illu: () => (
-      <div className="twinkle">
-        <Sparkle size={120} fill="var(--color-sun)" />
-      </div>
+      <Compass size={130} body="var(--color-cream)" needle="var(--color-coral)" />
     ),
   },
 ];
@@ -74,7 +70,7 @@ export default function Services() {
             </h2>
           </div>
           <p className="max-w-sm text-lg text-ink-soft">
-            Four overlapping practices, one studio. Pick the recipe — or all of
+            Four overlapping practices, one studio. Pick the recipe, or all of
             it.
           </p>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Star from "@/components/illustrations/Star";
+import Sparkle from "@/components/illustrations/Sparkle";
 
 type T = { name: string; role: string; quote: string; bg: string; rotate: string };
 
@@ -26,7 +26,7 @@ const items: T[] = [
     name: "Anaïs P.",
     role: "Creative director, Mellow",
     quote:
-      "Working with them feels like collaborating with friends who are also weirdly good at their job. 10/10.",
+      "Working with them feels like collaborating with friends who are also weirdly good at their job.",
     bg: "var(--color-sage)",
     rotate: "-rotate-1",
   },
@@ -62,9 +62,9 @@ export default function Testimonials() {
                 color: t.bg === "var(--color-sage)" || t.bg === "var(--color-cobalt)" ? "var(--color-cream)" : "var(--color-ink)",
               }}
             >
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1.5">
                 {Array.from({ length: 5 }).map((_, k) => (
-                  <Star key={k} size={22} fill="var(--color-sun)" stroke="var(--color-ink)" />
+                  <Sparkle key={k} size={20} fill="var(--color-sun)" stroke="var(--color-ink)" />
                 ))}
               </div>
               <blockquote className="font-display text-xl leading-snug tracking-tight sm:text-2xl">

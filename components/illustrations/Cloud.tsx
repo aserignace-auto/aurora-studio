@@ -1,7 +1,7 @@
 export default function Cloud({
   className = "",
   size = 120,
-  fill = "white",
+  fill = "var(--color-cream)",
   stroke = "var(--color-ink)",
 }: {
   className?: string;
@@ -11,17 +11,17 @@ export default function Cloud({
 }) {
   return (
     <svg
-      viewBox="0 0 200 120"
+      viewBox="0 0 200 100"
       width={size}
-      height={(size * 120) / 200}
+      height={(size * 100) / 200}
       className={className}
       aria-hidden
     >
       <path
-        d="M40 90 Q 18 90 20 70 Q 22 52 42 52 Q 46 28 70 28 Q 92 22 102 42 Q 120 30 140 44 Q 162 38 168 60 Q 184 64 180 84 Q 178 98 162 98 L 50 98 Q 42 98 40 90 Z"
+        d="M40 78 Q 22 78 22 60 Q 22 42 42 42 Q 50 22 72 22 Q 90 22 98 38 Q 110 28 128 38 Q 148 32 154 56 Q 174 56 174 74 Q 174 88 158 88 L 50 88 Q 40 88 40 78 Z"
         fill={fill}
         stroke={stroke}
-        strokeWidth={4}
+        strokeWidth={3.5}
         strokeLinejoin="round"
       />
     </svg>

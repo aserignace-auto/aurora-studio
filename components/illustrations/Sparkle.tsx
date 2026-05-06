@@ -3,7 +3,7 @@ export default function Sparkle({
   size = 40,
   fill = "var(--color-sun)",
   stroke = "var(--color-ink)",
-  strokeWidth = 3,
+  strokeWidth = 2.5,
 }: {
   className?: string;
   size?: number;
@@ -14,7 +14,7 @@ export default function Sparkle({
   return (
     <svg viewBox="0 0 100 100" width={size} height={size} className={className} aria-hidden>
       <path
-        d="M50 6 Q 54 42 86 50 Q 54 58 50 94 Q 46 58 14 50 Q 46 42 50 6 Z"
+        d="M50 8 Q 53 44 88 50 Q 53 56 50 92 Q 47 56 12 50 Q 47 44 50 8 Z"
         fill={fill}
         stroke={stroke}
         strokeWidth={strokeWidth}

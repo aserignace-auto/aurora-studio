@@ -1,33 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Eye from "@/components/illustrations/Eye";
-import Lightning from "@/components/illustrations/Lightning";
-import Heart from "@/components/illustrations/Heart";
-import Sun from "@/components/illustrations/Sun";
+import Compass from "@/components/illustrations/Compass";
+import Plane from "@/components/illustrations/Plane";
+import Vase from "@/components/illustrations/Vase";
+import Vinyl from "@/components/illustrations/Vinyl";
 
 const steps = [
   {
     n: "01",
     t: "Listen",
-    d: "We start with a conversation. No deck, no jargon. We listen with both eyes open.",
-    bg: "var(--color-cream)",
+    d: "We start with a conversation, no deck, no jargon. We learn your direction before we draw anything.",
     accent: "var(--color-coral)",
     Illu: () => (
-      <div className="float-bob-3">
-        <Eye size={120} iris="var(--color-coral)" />
-      </div>
+      <Compass size={100} body="var(--color-cream)" needle="var(--color-coral)" />
     ),
   },
   {
     n: "02",
     t: "Spark",
-    d: "We translate the brief into a creative thesis — the angle that makes every later choice easier.",
-    bg: "var(--color-cream)",
-    accent: "var(--color-sun)",
+    d: "We translate the brief into a creative thesis, the angle that makes every later choice easier.",
+    accent: "var(--color-sage)",
     Illu: () => (
-      <div className="wobble">
-        <Lightning size={110} fill="var(--color-sun)" />
+      <div className="drift-y">
+        <Plane size={100} fill="var(--color-cream)" trail="var(--color-sage)" />
       </div>
     ),
   },
@@ -35,24 +31,20 @@ const steps = [
     n: "03",
     t: "Make",
     d: "Identity, system, product. We design with intention and refuse the merely competent.",
-    bg: "var(--color-cream)",
     accent: "var(--color-cobalt)",
     Illu: () => (
-      <div className="float-bob">
-        <Sun size={120} color="var(--color-cobalt)" cheek="var(--color-rose)" />
+      <div className="slow-tilt">
+        <Vase size={100} body="var(--color-cobalt)" flower="var(--color-sun)" />
       </div>
     ),
   },
   {
     n: "04",
-    t: "Love",
+    t: "Live with it",
     d: "We hand off, train, and stay close. A great brand is something a team learns to live inside.",
-    bg: "var(--color-cream)",
-    accent: "var(--color-sage)",
+    accent: "var(--color-lavender)",
     Illu: () => (
-      <div className="float-bob-2">
-        <Heart size={110} fill="var(--color-coral)" />
-      </div>
+      <Vinyl size={100} body="var(--color-ink)" label="var(--color-lavender)" accent="var(--color-sun)" />
     ),
   },
 ];
@@ -68,7 +60,7 @@ export default function Process() {
           </div>
           <h2 className="mt-5 font-display text-[clamp(48px,8vw,128px)] font-medium leading-[0.92] tracking-tight">
             Four{" "}
-            <span className="italic text-cobalt">happy</span>{" "}
+            <span className="italic text-cobalt">deliberate</span>{" "}
             steps.
           </h2>
         </div>

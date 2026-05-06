@@ -24,7 +24,7 @@ export default function Home() {
           ]}
           bg="var(--color-coral)"
           text="var(--color-cream)"
-          decoKind="star"
+          decoKind="sparkle"
           decoColor="var(--color-sun)"
         />
 
@@ -41,7 +41,7 @@ export default function Home() {
           ]}
           bg="var(--color-cobalt)"
           text="var(--color-cream)"
-          decoKind="sparkle"
+          decoKind="dot"
           decoColor="var(--color-sun)"
           speed="fast"
         />
@@ -54,14 +54,14 @@ export default function Home() {
 
         <Marquee
           items={[
-            "★ marigold studio ★",
-            "let's make magic",
-            "★ marigold studio ★",
+            "marigold studio",
+            "let's make something",
+            "marigold studio",
             "say hello",
           ]}
           bg="var(--color-sage)"
           text="var(--color-cream)"
-          decoKind="flower"
+          decoKind="squiggle"
           decoColor="var(--color-sun)"
         />
 
