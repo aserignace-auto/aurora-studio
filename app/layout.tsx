@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Hanken_Grotesk, Caveat, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
-import Cursor from "@/components/Cursor";
-import Loader from "@/components/Loader";
 
-const instrument = Instrument_Serif({
-  variable: "--font-instrument",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
+  axes: ["opsz", "SOFT", "WONK"],
   display: "swap",
 });
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -27,18 +31,18 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aurora-studio-xi.vercel.app"),
-  title: "Aurora Studio — Independent Creative Direction",
+  title: "Marigold Studio — We design joyful brand worlds",
   description:
-    "Aurora is an independent design studio crafting brand worlds, digital products, and editorial systems for ambitious teams.",
+    "Marigold is a small, sunny design studio crafting brand worlds, illustrated digital products, and editorial systems for ambitious teams.",
   openGraph: {
-    title: "Aurora Studio",
-    description: "Independent creative direction. Brand, product, editorial.",
+    title: "Marigold Studio",
+    description: "Joyful design, illustrated. Brand, product, editorial.",
     type: "website",
   },
   icons: {
     icon: [
       {
-        url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='8' fill='%23d8ff3a'/></svg>",
+        url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='9' fill='%23ffc83a'/><circle cx='13' cy='14' r='1.4' fill='%23181410'/><circle cx='19' cy='14' r='1.4' fill='%23181410'/><path d='M12 18 Q 16 21 20 18' fill='none' stroke='%23181410' stroke-width='1.6' stroke-linecap='round'/></svg>",
         type: "image/svg+xml",
       },
     ],
@@ -53,13 +57,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrument.variable} ${bricolage.variable} ${jetbrains.variable}`}
+      className={`${fraunces.variable} ${hanken.variable} ${caveat.variable} ${jetbrains.variable}`}
     >
-      <body className="bg-ink text-bone selection:bg-lime selection:text-ink">
-        <Loader />
-        <Cursor />
+      <body className="bg-cream text-ink">
         <SmoothScroll>{children}</SmoothScroll>
-        <div className="grain" aria-hidden />
+        <div className="paper-grain" aria-hidden />
       </body>
     </html>
   );

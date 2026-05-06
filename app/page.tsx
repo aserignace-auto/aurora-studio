@@ -1,61 +1,70 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
-import Manifesto from "@/components/sections/Manifesto";
+import Studio from "@/components/sections/Studio";
+import Services from "@/components/sections/Services";
 import Work from "@/components/sections/Work";
-import Capabilities from "@/components/sections/Capabilities";
 import Process from "@/components/sections/Process";
-import Recognition from "@/components/sections/Recognition";
+import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
     <>
       <Nav />
-      <main className="relative">
+      <main>
         <Hero />
 
         <Marquee
           items={[
-            "Independent practice",
-            "Brand · Product · Editorial",
-            "Paris & everywhere",
-            "Est. MMXXIV",
+            "we design joyful brand worlds",
+            "made by humans, for humans",
+            "say hi · hello@marigold.studio",
+            "open for Q3 2026",
           ]}
-          italic
+          bg="var(--color-coral)"
+          text="var(--color-cream)"
+          decoKind="star"
+          decoColor="var(--color-sun)"
         />
 
-        <Manifesto />
+        <Studio />
+
+        <Services />
 
         <Marquee
           items={[
-            "Selected work",
-            "Studies in detail",
-            "Recent chapters",
-            "On craft",
+            "selected work",
+            "things we love",
+            "made in 2024–2026",
+            "more on are.na",
           ]}
+          bg="var(--color-cobalt)"
+          text="var(--color-cream)"
+          decoKind="sparkle"
+          decoColor="var(--color-sun)"
           speed="fast"
-          size="md"
         />
 
         <Work />
 
-        <Capabilities />
-
         <Process />
+
+        <Testimonials />
 
         <Marquee
           items={[
-            "Aurora ★",
-            "A studio for brave brands",
-            "Aurora ★",
-            "Built with intent",
+            "★ marigold studio ★",
+            "let's make magic",
+            "★ marigold studio ★",
+            "say hello",
           ]}
-          italic
-          size="xl"
+          bg="var(--color-sage)"
+          text="var(--color-cream)"
+          decoKind="flower"
+          decoColor="var(--color-sun)"
         />
 
-        <Recognition />
         <Contact />
       </main>
     </>

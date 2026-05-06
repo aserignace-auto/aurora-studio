@@ -4,87 +4,68 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const links = [
-  { label: "Index", href: "#index" },
   { label: "Work", href: "#work" },
   { label: "Studio", href: "#studio" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "#services" },
+  { label: "Hello", href: "#contact" },
 ];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [time, setTime] = useState("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     onScroll();
     window.addEventListener("scroll", onScroll);
-
-    const updateTime = () => {
-      const d = new Date();
-      const fmt = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Europe/Paris",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      });
-      setTime(fmt.format(d));
-    };
-    updateTime();
-    const t = setInterval(updateTime, 30_000);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      clearInterval(t);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <motion.header
       initial={{ y: -30, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.9, delay: 1.4, ease: [0.2, 0.8, 0.2, 1] }}
-      className="fixed left-0 right-0 top-0 z-50 px-6 pt-6 sm:px-10 sm:pt-8"
+      transition={{ duration: 0.7, delay: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
+      className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 sm:px-8 sm:pt-6"
     >
       <div
-        className={`flex items-center justify-between rounded-full border border-bone/10 px-4 py-3 transition-all duration-500 sm:px-6 ${
-          scrolled
-            ? "bg-ink/70 backdrop-blur-xl"
-            : "bg-transparent backdrop-blur-0"
+        className={`flex items-center justify-between rounded-full border-[2.5px] border-ink px-3 py-2 transition-all duration-300 sm:px-5 sm:py-2.5 ${
+          scrolled ? "bg-cream shadow-[3px_4px_0_var(--color-ink)]" : "bg-cream/90"
         }`}
       >
         <a href="#top" className="group flex items-center gap-2.5">
-          <span className="block h-2 w-2 rounded-full bg-lime transition-all duration-500 group-hover:scale-150 group-hover:shadow-[0_0_18px_var(--color-lime)]" />
-          <span className="font-serif text-xl italic leading-none">Aurora</span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-bone-dim sm:inline">
-            ™ Studio
+          <span className="block h-7 w-7 sm:h-8 sm:w-8">
+            <svg viewBox="0 0 32 32" className="h-full w-full">
+              <circle cx="16" cy="16" r="9" fill="var(--color-sun)" stroke="var(--color-ink)" strokeWidth={2} />
+              <circle cx="13" cy="14.5" r="1.4" fill="var(--color-ink)" />
+              <circle cx="19" cy="14.5" r="1.4" fill="var(--color-ink)" />
+              <path d="M12 18.5 Q 16 22 20 18.5" fill="none" stroke="var(--color-ink)" strokeWidth={1.6} strokeLinecap="round" />
+            </svg>
+          </span>
+          <span className="font-display text-2xl font-medium leading-none tracking-tight text-ink">
+            Marigold
           </span>
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {links.map((l) => (
             <a
               key={l.label}
               href={l.href}
-              className="group relative font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim transition-colors hover:text-bone"
+              className="group relative text-[15px] font-medium text-ink transition-colors hover:text-coral"
             >
               {l.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-lime transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-0.5 left-0 h-0.5 w-0 rounded-full bg-coral transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-bone-dim sm:inline">
-            Paris · {time}
-          </span>
-          <a
-            href="#contact"
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-bone px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-lime"
-          >
-            <span className="relative z-10">Start a project</span>
-            <span className="relative z-10 inline-block h-1.5 w-1.5 rounded-full bg-ink" />
-          </a>
-        </div>
+        <a
+          href="#contact"
+          className="group inline-flex items-center gap-2 rounded-full border-[2.5px] border-ink bg-coral px-4 py-1.5 text-[13px] font-bold text-cream shadow-[3px_3px_0_var(--color-ink)] transition-all hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0_var(--color-ink)] sm:text-sm"
+        >
+          <span className="block h-1.5 w-1.5 rounded-full bg-cream" />
+          Hire us
+        </a>
       </div>
     </motion.header>
   );

@@ -1,51 +1,55 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import Star from "@/components/illustrations/Star";
+import Heart from "@/components/illustrations/Heart";
+import Flower from "@/components/illustrations/Flower";
+import Sparkle from "@/components/illustrations/Sparkle";
+
+type DecoKey = "star" | "heart" | "flower" | "sparkle";
+
+function Deco({ kind, color }: { kind: DecoKey; color: string }) {
+  const props = { size: 36 };
+  if (kind === "star") return <Star {...props} fill={color} />;
+  if (kind === "heart") return <Heart {...props} fill={color} />;
+  if (kind === "sparkle") return <Sparkle {...props} fill={color} />;
+  return <Flower size={36} petal={color} center="var(--color-sun)" />;
+}
 
 export default function Marquee({
   items,
+  bg = "var(--color-coral)",
+  text = "var(--color-cream)",
   speed = "normal",
-  italic = false,
-  size = "lg",
+  decoKind = "star",
+  decoColor = "var(--color-sun)",
 }: {
   items: string[];
+  bg?: string;
+  text?: string;
   speed?: "normal" | "fast";
-  italic?: boolean;
-  size?: "md" | "lg" | "xl";
+  decoKind?: DecoKey;
+  decoColor?: string;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const skew = useTransform(scrollYProgress, [0, 0.5, 1], [-2, 0, 2]);
-
-  const sizeMap = {
-    md: "text-[clamp(40px,7vw,90px)]",
-    lg: "text-[clamp(56px,11vw,160px)]",
-    xl: "text-[clamp(80px,16vw,240px)]",
-  };
-
-  const doubled = [...items, ...items];
+  const doubled = [...items, ...items, ...items];
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ skewY: skew }}
-      className="overflow-hidden border-y border-bone/10 py-3"
+    <div
+      className="relative overflow-hidden border-y-[2.5px] border-ink py-3"
+      style={{ background: bg, color: text }}
     >
       <div className={`marquee-track ${speed === "fast" ? "marquee-fast" : ""} flex whitespace-nowrap`}>
         {doubled.map((it, i) => (
           <span
             key={i}
-            className={`flex items-center px-6 font-serif ${sizeMap[size]} ${italic ? "italic" : ""} text-bone`}
+            className="flex items-center gap-6 px-6 font-display text-[clamp(34px,5.6vw,76px)] font-medium tracking-tight"
           >
             {it}
-            <span aria-hidden className="ml-12 inline-block h-3 w-3 rounded-full bg-lime" />
+            <span className="inline-block">
+              <Deco kind={decoKind} color={decoColor} />
+            </span>
           </span>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }

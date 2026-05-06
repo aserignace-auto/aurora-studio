@@ -1,153 +1,175 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import Sun from "@/components/illustrations/Sun";
+import Heart from "@/components/illustrations/Heart";
+import Flower from "@/components/illustrations/Flower";
+import Lightning from "@/components/illustrations/Lightning";
+import Cloud from "@/components/illustrations/Cloud";
+import Sparkle from "@/components/illustrations/Sparkle";
 
 type Project = {
   index: string;
   title: string;
-  subtitle: string;
   client: string;
-  year: string;
   category: string;
-  tag: string;
-  swatch: string;
+  year: string;
+  bg: string;
+  text: string;
+  tagline: string;
+  Illu: () => React.ReactElement;
 };
 
 const projects: Project[] = [
   {
     index: "01",
-    title: "Atelier Mineral",
-    subtitle: "Identity, art direction, packaging",
-    client: "Atelier Mineral",
+    title: "Bloom Beauty",
+    client: "Bloom",
+    category: "Brand · Packaging",
     year: "2026",
-    category: "Brand world",
-    tag: "Beauty",
-    swatch: "from-[#dcd1bd] via-[#c2b89f] to-[#3a3528]",
+    bg: "var(--color-rose)",
+    text: "var(--color-ink)",
+    tagline: "skincare that smiles back",
+    Illu: () => (
+      <div className="float-bob">
+        <Flower size={150} petal="var(--color-coral)" center="var(--color-sun)" />
+      </div>
+    ),
   },
   {
     index: "02",
     title: "Halo Capital",
-    subtitle: "Brand system, web architecture, motion",
     client: "Halo",
+    category: "Web · System",
     year: "2025",
-    category: "Digital product",
-    tag: "Fintech",
-    swatch: "from-[#0b1612] via-[#2a4a3a] to-[#d8ff3a]",
+    bg: "var(--color-cobalt)",
+    text: "var(--color-cream)",
+    tagline: "fintech with feelings",
+    Illu: () => (
+      <div className="wobble">
+        <Lightning size={140} fill="var(--color-sun)" />
+      </div>
+    ),
   },
   {
     index: "03",
-    title: "Maison Veil",
-    subtitle: "Editorial system, books, signage",
-    client: "Maison Veil",
+    title: "Mellow Coffee",
+    client: "Mellow",
+    category: "Identity · Cafés",
     year: "2025",
-    category: "Editorial",
-    tag: "Cultural",
-    swatch: "from-[#f3ece0] via-[#d4c5ae] to-[#7d6e57]",
+    bg: "var(--color-sun)",
+    text: "var(--color-ink)",
+    tagline: "slow mornings, drawn in",
+    Illu: () => (
+      <div className="float-bob-2">
+        <Sun size={150} color="var(--color-coral)" cheek="var(--color-rose)" />
+      </div>
+    ),
   },
   {
     index: "04",
-    title: "Spectre Audio",
-    subtitle: "Brand identity, type, sleeve series",
-    client: "Spectre",
-    year: "2024",
-    category: "Sound",
-    tag: "Music label",
-    swatch: "from-[#1a0d1f] via-[#5d2a6b] to-[#f3ece0]",
+    title: "North & Fern",
+    client: "N&F",
+    category: "E-commerce",
+    year: "2025",
+    bg: "var(--color-sage)",
+    text: "var(--color-cream)",
+    tagline: "quiet outdoor goods",
+    Illu: () => (
+      <div className="wobble-slow">
+        <Cloud size={150} fill="var(--color-cream)" />
+      </div>
+    ),
   },
   {
     index: "05",
-    title: "North & Sextant",
-    subtitle: "Naming, identity, e-commerce",
-    client: "N&S",
+    title: "Spectre Audio",
+    client: "Spectre",
+    category: "Music label",
     year: "2024",
-    category: "Commerce",
-    tag: "Apparel",
-    swatch: "from-[#0c1a2a] via-[#1f3a5a] to-[#e0d7c7]",
+    bg: "var(--color-lavender)",
+    text: "var(--color-cream)",
+    tagline: "records you keep forever",
+    Illu: () => (
+      <div className="float-bob-3">
+        <Sparkle size={130} fill="var(--color-sun)" />
+      </div>
+    ),
+  },
+  {
+    index: "06",
+    title: "Petit Atelier",
+    client: "Petit Atelier",
+    category: "Childrens books",
+    year: "2024",
+    bg: "var(--color-coral)",
+    text: "var(--color-cream)",
+    tagline: "bedtime stories, on paper",
+    Illu: () => (
+      <div className="wobble">
+        <Heart size={140} fill="var(--color-cream)" />
+      </div>
+    ),
   },
 ];
 
 export default function Work() {
-  const [hovered, setHovered] = useState<string | null>(null);
-
   return (
-    <section id="work" className="relative px-6 py-24 sm:px-10 sm:py-32">
+    <section id="work" className="relative px-5 py-24 sm:px-10 sm:py-32">
       <div className="mx-auto max-w-[1480px]">
-        <div className="mb-14 flex items-end justify-between gap-8 border-b border-bone/10 pb-8">
+        <div className="mb-12 flex flex-col items-start gap-3 sm:mb-16 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
           <div>
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-bone-faint">
-              [03] / Selected work
-            </span>
-            <h2 className="mt-3 font-serif text-[clamp(40px,7vw,110px)] leading-[0.95] tracking-[-0.02em] text-bone">
-              <span className="italic">Recent</span> chapters
+            <div className="inline-flex items-center gap-2 rounded-full border-[2px] border-ink bg-rose px-3 py-1 text-[12px] font-semibold uppercase tracking-wider shadow-[2px_2px_0_var(--color-ink)]">
+              <span className="block h-2 w-2 rounded-full bg-ink" />
+              Selected work
+            </div>
+            <h2 className="mt-5 font-display text-[clamp(48px,8vw,128px)] font-medium leading-[0.92] tracking-tight">
+              Recent{" "}
+              <span className="hand-underline-sage italic text-sage">favourites</span>.
             </h2>
           </div>
-          <span className="hidden font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim sm:block">
-            05 — Studies
-          </span>
+          <p className="max-w-sm font-hand text-2xl text-ink-soft sm:text-3xl">
+            six things we are still proud of
+          </p>
         </div>
 
-        <ul className="divide-y divide-bone/10">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {projects.map((p, i) => (
-            <motion.li
+            <motion.a
               key={p.index}
-              initial={{ opacity: 0, y: 24 }}
+              href="#"
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: i * 0.04, ease: [0.2, 0.8, 0.2, 1] }}
-              onMouseEnter={() => setHovered(p.index)}
-              onMouseLeave={() => setHovered(null)}
-              className="relative"
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, delay: i * 0.05, ease: [0.2, 0.8, 0.2, 1] }}
+              className="group relative flex flex-col overflow-hidden rounded-[32px] border-[2.5px] border-ink shadow-[5px_6px_0_var(--color-ink)] transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:rotate-[-0.6deg] hover:shadow-[7px_9px_0_var(--color-ink)]"
+              style={{ background: p.bg, color: p.text }}
             >
-              <a
-                href="#"
-                data-cursor-grow
-                className="group grid grid-cols-12 items-center gap-4 py-8 transition-colors sm:py-9"
-              >
-                <span className="col-span-2 font-mono text-xs text-bone-faint sm:col-span-1">
+              <div className="relative flex h-[260px] items-center justify-center px-6 pt-6 sm:h-[280px]">
+                <div className="absolute left-4 top-4 font-mono text-[11px] font-bold uppercase tracking-wider opacity-80">
                   {p.index}
-                </span>
-                <div className="col-span-10 flex flex-col gap-1.5 sm:col-span-5">
-                  <span className="font-serif text-3xl tracking-tight text-bone transition-all duration-500 sm:text-4xl group-hover:translate-x-2 group-hover:italic group-hover:text-lime">
-                    {p.title}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-bone-dim">
-                    {p.subtitle}
-                  </span>
                 </div>
-
-                {/* Swatch preview */}
-                <div className="col-span-7 sm:col-span-3">
-                  <div
-                    className={`relative ml-auto h-10 w-full overflow-hidden rounded-full bg-gradient-to-r ${p.swatch} transition-all duration-500 group-hover:h-14 sm:h-12 sm:max-w-[260px]`}
-                  >
-                    <div className="absolute inset-0 mix-blend-overlay opacity-30 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.4),transparent_60%)]" />
-                  </div>
-                </div>
-
-                <span className="col-span-3 font-mono text-[10px] uppercase tracking-[0.2em] text-bone-dim sm:col-span-2 sm:text-[11px]">
-                  {p.category}
-                </span>
-                <span className="col-span-2 text-right font-mono text-[10px] uppercase tracking-[0.2em] text-bone-faint sm:col-span-1 sm:text-[11px]">
+                <div className="absolute right-4 top-4 font-mono text-[11px] font-bold uppercase tracking-wider opacity-80">
                   {p.year}
-                </span>
-              </a>
-            </motion.li>
+                </div>
+                <p.Illu />
+              </div>
+              <div className="border-t-[2.5px] border-ink p-5 sm:p-6">
+                <div className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] opacity-80">
+                  {p.category}
+                </div>
+                <div className="mt-2 flex items-baseline justify-between gap-3">
+                  <h3 className="font-display text-2xl font-medium tracking-tight sm:text-3xl">
+                    {p.title}
+                  </h3>
+                  <span className="text-xl transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </div>
+                <p className="mt-1 font-hand text-xl">{p.tagline}</p>
+              </div>
+            </motion.a>
           ))}
-        </ul>
-
-        <div className="mt-14 flex items-center justify-between gap-6 border-t border-bone/10 pt-8">
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-bone-faint">
-            Archive · 24 projects since 2024
-          </span>
-          <a
-            href="#"
-            data-cursor-grow
-            className="group inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-bone hover:text-lime"
-          >
-            View archive
-            <span className="block h-px w-10 bg-bone transition-all group-hover:w-16 group-hover:bg-lime" />
-          </a>
         </div>
       </div>
     </section>
