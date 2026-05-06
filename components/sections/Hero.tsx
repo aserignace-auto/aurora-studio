@@ -2,6 +2,10 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import HeroCanvas from "@/components/HeroCanvas";
+
+const HERO_IMAGE =
+  "https://images.unsplash.com/photo-1543121170-856f92d04651?auto=format&fit=crop&w=2400&q=80";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -21,18 +25,12 @@ export default function Hero() {
       ref={ref}
       className="relative isolate flex min-h-[100svh] flex-col overflow-hidden"
     >
-      {/* Hero image with parallax */}
+      {/* Hero image with WebGL displacement shader */}
       <motion.div
         style={{ scale: imageScale, y: imageY }}
         className="absolute inset-0 -z-10"
       >
-        <picture>
-          <img
-            src="https://picsum.photos/seed/obscura-hero-paris-night/2400/1600?grayscale"
-            alt="Cinematic still"
-            className="cinema h-full w-full object-cover"
-          />
-        </picture>
+        <HeroCanvas imageUrl={HERO_IMAGE} />
       </motion.div>
 
       {/* Vignette overlay */}

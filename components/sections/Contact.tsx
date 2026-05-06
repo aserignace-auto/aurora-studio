@@ -24,7 +24,7 @@ export default function Contact() {
         className="absolute inset-0 -z-10"
       >
         <img
-          src="https://picsum.photos/seed/obscura-contact-bg/2400/1500?grayscale"
+          src="https://images.unsplash.com/photo-1543121170-856f92d04651?auto=format&fit=crop&w=2400&q=80"
           alt=""
           className="cinema h-full w-full object-cover opacity-40"
         />

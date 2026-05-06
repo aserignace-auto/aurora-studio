@@ -4,12 +4,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const images = [
-  { id: "01", url: "https://picsum.photos/seed/obscura-still-helena-madrid/1200/1500?grayscale", caption: "Helena · Madrid · 2026", w: "tall" },
-  { id: "02", url: "https://picsum.photos/seed/obscura-still-aether-lyon/1600/1000?grayscale", caption: "Aether · Lyon · 2025", w: "wide" },
-  { id: "03", url: "https://picsum.photos/seed/obscura-still-atlas-tokyo/1100/1100?grayscale", caption: "Atlas · Tokyo · 2025", w: "square" },
-  { id: "04", url: "https://picsum.photos/seed/obscura-still-bloom-paris/1200/1500?grayscale", caption: "Late Bloom · Paris · 2025", w: "tall" },
-  { id: "05", url: "https://picsum.photos/seed/obscura-still-spectre-berlin/1600/1000?grayscale", caption: "Spectre · Berlin · 2024", w: "wide" },
-  { id: "06", url: "https://picsum.photos/seed/obscura-still-north-iceland/1100/1100?grayscale", caption: "North · Iceland · 2024", w: "square" },
+  { id: "01", url: "https://images.unsplash.com/photo-1711281352303-0d4a66ed066f?auto=format&fit=crop&w=1200&q=80", caption: "Helena · Madrid · 2026", w: "tall" },
+  { id: "02", url: "https://images.unsplash.com/photo-1506813138094-7ad38fe3f0cd?auto=format&fit=crop&w=1600&q=80", caption: "Aether · Lyon · 2025", w: "wide" },
+  { id: "03", url: "https://images.unsplash.com/photo-1652985808809-08b53267628b?auto=format&fit=crop&w=1200&q=80", caption: "Atlas · Tokyo · 2025", w: "square" },
+  { id: "04", url: "https://images.unsplash.com/photo-1670324382035-f9cfacc3b59b?auto=format&fit=crop&w=1200&q=80", caption: "Late Bloom · Paris · 2025", w: "tall" },
+  { id: "05", url: "https://images.unsplash.com/photo-1727188213453-838ba46a4d5b?auto=format&fit=crop&w=1600&q=80", caption: "Spectre · Berlin · 2024", w: "wide" },
+  { id: "06", url: "https://images.unsplash.com/photo-1638128807421-1fe4b5f4e7c0?auto=format&fit=crop&w=1200&q=80", caption: "North · Iceland · 2024", w: "square" },
 ];
 
 export default function Photography() {
