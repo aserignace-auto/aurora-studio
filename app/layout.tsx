@@ -33,21 +33,13 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aurora-studio-xi.vercel.app"),
-  title: "Aurion One — Premium Wireless Headphones",
+  title: "Obscura — A film & photography studio",
   description:
-    "Spatial audio, AI noise cancellation, 50-hour battery. Designed for those who hear the difference. Ships July 15, 2026.",
+    "Obscura is an independent direction studio crafting films, photography, and brand worlds. Based in Paris.",
   openGraph: {
-    title: "Aurion One",
-    description: "Premium wireless headphones. Spatial audio. Drop July 15.",
+    title: "Obscura Studio",
+    description: "Films, photography, direction. Paris.",
     type: "website",
-  },
-  icons: {
-    icon: [
-      {
-        url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23050507'/><circle cx='16' cy='16' r='6' fill='none' stroke='%232d6bff' stroke-width='2'/><circle cx='16' cy='16' r='2' fill='%232d6bff'/></svg>",
-        type: "image/svg+xml",
-      },
-    ],
   },
 };
 
@@ -65,6 +57,7 @@ export default function RootLayout({
         <ScrollProgress />
         <Cursor />
         <SmoothScroll>{children}</SmoothScroll>
+        <div className="vignette" aria-hidden />
         <div className="grain" aria-hidden />
       </body>
     </html>

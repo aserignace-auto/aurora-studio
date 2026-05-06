@@ -1,12 +1,12 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
-import Sound from "@/components/sections/Sound";
-import Color from "@/components/sections/Color";
-import Specs from "@/components/sections/Specs";
-import Reviews from "@/components/sections/Reviews";
-import PreOrder from "@/components/sections/PreOrder";
-import Footer from "@/components/sections/Footer";
+import Studio from "@/components/sections/Studio";
+import Films from "@/components/sections/Films";
+import Photography from "@/components/sections/Photography";
+import Process from "@/components/sections/Process";
+import Recognition from "@/components/sections/Recognition";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
@@ -15,12 +15,12 @@ export default function Home() {
       <main>
         <Hero />
         <Marquee />
-        <Sound />
-        <Color />
-        <Specs />
-        <Reviews />
-        <PreOrder />
-        <Footer />
+        <Studio />
+        <Films />
+        <Photography />
+        <Process />
+        <Recognition />
+        <Contact />
       </main>
     </>
   );
